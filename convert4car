@@ -1,0 +1,82 @@
+#!/bin/bash
+
+#TODO: Gestire le variabili con valori di input
+MUSICFOLDER="/home/mbarbieri/Musica";
+CARFOLDER="/home/mbarbieri/CarMusic";
+
+
+
+shopt -s globstar
+cd $MUSICFOLDER
+
+# Crea la cartella di destinazione se non c'è
+if [ -d "$CARFOLDER" ] ; then
+	echo "La cartella $CARFOLDER è presente"
+else
+	echo "Creo la cartella"
+	mkdir $CARFOLDER
+fi
+
+# LISTA TUTTI I FILE E CARTELLE
+for i in **/*; do # Whitespace-safe and recursive
+
+	# Se è una cartella
+	if [ -d "$i" ] ; then
+
+		# Se è una cartella controllo se esiste nell'archivio auto
+		# se non esiste la creo
+		if [ ! -d "$CARFOLDER/$i" ] ; then
+			echo "$CARFOLDER/$i non è presente, creo la cartella..."
+			mkdir "$CARFOLDER/$i"
+		fi
+
+	# Se è un file
+	elif [ -f "$i" ] ; then
+		# Estraggo l'estensione
+		filename="${i##*/}" ; extension="${filename##*.}"
+		
+		#echo "$i è un file $extension" #DEBUG
+		
+		case $extension in
+			mp3)
+				echo "Trovato file mp3..."
+				if [ ! -f "$CARFOLDER/$i" ] ; then
+					echo "$filename non esiste in CARFOLDER lo copio..."
+					cp "$i" "$CARFOLDER/$i"
+				else
+					echo "$filename è già presente in car folder :-)"
+				fi
+				;;
+			ogg|flac)
+				echo "Trovato file ogg...";
+				BASENAME=$(echo "$i" | cut -f 1 -d '.') # NOME FILE SENZA ESTENSIONE
+
+				if [ ! -f "$CARFOLDER/$BASENAME.mp3" ] ; then
+					echo "$CARFOLDER/$BASENAME.mp3 non esiste in CARFOLDER lo converto..."
+					avconv -i "$i" -acodec libmp3lame -map_metadata 0:s:0 "$CARFOLDER/$BASENAME.mp3"
+				else
+					echo "$BASENAME.mp3 è già presente in car folder :-)"
+				fi
+				;;
+			*)
+				echo "Non conosco il file $extension";
+		esac
+
+
+	else
+		echo "Trovato file $i sconosciuto, consulta i log..."
+		echo "Non riconosco il file $i" >> convert-error.log
+	fi
+done
+
+
+
+
+
+
+
+
+
+
+
+
