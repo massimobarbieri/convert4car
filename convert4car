@@ -1,6 +1,7 @@
 #!/bin/bash
 
 #TODO: Gestire le variabili con valori di input
+#TODO: HowTo
 MUSICFOLDER="/home/mbarbieri/Musica";
 CARFOLDER="/home/mbarbieri/CarMusic";
 
