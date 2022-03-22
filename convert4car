@@ -1,9 +1,15 @@
 #!/bin/bash
 
 #TODO: Gestire le variabili con valori di input
-#TODO: HowTo
-MUSICFOLDER="/home/mbarbieri/Musica";
-CARFOLDER="/home/mbarbieri/CarMusic";
+
+
+# Percorso della cartella che contiene la tua musica.
+# Esempio /home/pippo/Music
+MUSICFOLDER=$1;
+
+# Percorso della cartella nella quale saranno salvati i file convertiti
+# Esempio /home/pippo/Car
+CARFOLDER=$2;
 
 
 
