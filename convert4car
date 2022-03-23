@@ -1,5 +1,12 @@
 #!/bin/bash
 
+# Check if avconv is installed
+if ! command -v avconv &> /dev/null
+then
+	echo "avconv is not found please install the software"
+	exit 1
+fi
+
 #TODO: Gestire le variabili con valori di input
 
 
