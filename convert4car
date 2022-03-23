@@ -1,11 +1,18 @@
 #!/bin/bash
 
-# Check if avconv is installed
-if ! command -v ffmpeg &> /dev/null
-then
-	echo "avconv is not found please install the software"
-	exit 1
+# Checking required packages
+REQUIRED_PKG=(libmp3lame-dev ffmpeg)
+
+for PKG in ${REQUIRED_PKG[@]}
+do
+	PKG_OK=$(dpkg-query -W --showformat='${Status}\n' $PKG|grep "install ok installed")
+echo Checking for $PKG: $PKG_OK
+
+if [ "" = "$PKG_OK" ]; then
+  echo "Ops! $PKG is not installed. Please install it and run the script again."
+  exit
 fi
+done
 
 #TODO: Gestire le variabili con valori di input
 
