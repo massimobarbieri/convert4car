@@ -3,6 +3,15 @@
 # Checking required packages
 REQUIRED_PKG=(libmp3lame-dev ffmpeg)
 
+# Controllo l'esistenza dei parametri necessari al funzionamento dello script
+if [ "$1" == "" ] || [ "$2" == "" ]
+then
+	echo "Usage $0 <path of the music folder> <path of the destination folder."
+	echo ""
+	exit 1
+fi
+
+
 for PKG in ${REQUIRED_PKG[@]}
 do
 	PKG_OK=$(dpkg-query -W --showformat='${Status}\n' $PKG|grep "install ok installed")
@@ -10,6 +19,7 @@ echo Checking for $PKG: $PKG_OK
 
 if [ "" = "$PKG_OK" ]; then
   echo "Ops! $PKG is not installed. Please install it and run the script again."
+  echo "To install the package you should run sudo apt install $PKG"
   exit
 fi
 done
