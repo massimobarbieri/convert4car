@@ -111,12 +111,13 @@ for i in **/*; do # Whitespace-safe and recursive
 					COVER="$DIROFMP3/front.jpg"
 				fi
 
-				# Trovare come usare correttamente il file ffmpeg per aggiungere cover
 
 				echo "Trovato file mp3..."
 				if [ ! -f "$CARFOLDER/$i" ] ; then
 					echo "$filename non esiste in CARFOLDER lo copio con cp..."
 					cp "$i" "$CARFOLDER/$i"
+
+#TODO: Aggiungere qui il comando per embeddare la cover nel file se presente il file cover.jpg
 
 				else
 					echo "$filename è già presente in car folder :-)"
