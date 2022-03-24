@@ -22,8 +22,8 @@
 # License along with this library.  If not, see <http://www.gnu.org/licenses/>.
 ###########################################################################
 
-# Checking required packages
-REQUIRED_PKG=(libmp3lame-dev ffmpeg)
+#TODO: Aggiungere funzione per scaricare le copertine nella cartella
+#TODO: Controllare se i metadati vengono trasferiti
 
 # Controllo l'esistenza dei parametri necessari al funzionamento dello script
 if [ "$1" == "" ] || [ "$2" == "" ]
@@ -33,6 +33,18 @@ then
 	exit 1
 fi
 
+# Percorso della cartella che contiene la tua musica.
+# Esempio /home/pippo/Music
+MUSICFOLDER=$1;
+
+# Percorso della cartella nella quale saranno salvati i file convertiti
+# Esempio /home/pippo/Car
+CARFOLDER=$2;
+
+
+
+# Checking required packages
+REQUIRED_PKG=(libmp3lame-dev ffmpeg)
 
 for PKG in ${REQUIRED_PKG[@]}
 do
@@ -46,16 +58,6 @@ if [ "" = "$PKG_OK" ]; then
 fi
 done
 
-#TODO: Gestire le variabili con valori di input
-
-
-# Percorso della cartella che contiene la tua musica.
-# Esempio /home/pippo/Music
-MUSICFOLDER=$1;
-
-# Percorso della cartella nella quale saranno salvati i file convertiti
-# Esempio /home/pippo/Car
-CARFOLDER=$2;
 
 
 
