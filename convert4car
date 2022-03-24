@@ -112,6 +112,18 @@ for i in **/*; do # Whitespace-safe and recursive
 					echo "$BASENAME.mp3 è già presente in car folder :-)"
 				fi
 				;;
+
+# Occorre aggiungere con ffmpeg l'inserimento della cover all'interno del file
+#			jpg)
+#				echo "Trovato file jpg....forse è l'artwork dell'album?"
+#				if [ ! -f "$CARFOLDER/$i" ] ; then
+#					echo "$filename non esiste in CARFOLDER lo copio..."
+#					cp "$i" "$CARFOLDER/$i"
+#				else
+#					echo "$filename è già presente in car folder :-)"
+#				fi
+#				;;
+
 			*)
 				echo "Non conosco il file $extension";
 		esac
