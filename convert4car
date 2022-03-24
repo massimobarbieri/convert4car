@@ -23,7 +23,6 @@
 ###########################################################################
 
 #TODO: Aggiungere funzione per scaricare le copertine nella cartella
-#TODO: Aggiungere controllo per verificare se i file mp3 sono già presenti nella cartella di destinazione
 
 # Controllo l'esistenza dei parametri necessari al funzionamento dello script
 if [ "$1" == "" ] || [ "$2" == "" ]
