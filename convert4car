@@ -74,6 +74,8 @@ fi
 # LISTA TUTTI I FILE E CARTELLE
 for i in **/*; do # Whitespace-safe and recursive
 
+
+
 	# Se è una cartella
 	if [ -d "$i" ] ; then
 
@@ -90,11 +92,28 @@ for i in **/*; do # Whitespace-safe and recursive
 		filename="${i##*/}" ; extension="${filename##*.}"
 		
 		#echo "$i è un file $extension" #DEBUG
+
 		
 		case $extension in
 			mp3)
+				# Controllo se nella cartella che contiene il file è presente
+				# un file cover.jpg o front.jpg
+				# se è presente anziché fare una copia con cp la faccio con
+				# ffmpeg
+				DIROFMP3=$(dirname $i)
+				echo $DIROFMP3
+
+			#	if [ ! -f "$DIROFMP3/cover.jpg" ]
+			#	then
+			#		COVER="$DIROFMP3/cover.jpg"
+			#	fi
+			#	if [ -f "DIROFMP3/front.jpg" ]
+			#		COVER="$DIROFMP3/front.jpg"
+	#	fi
+
 				echo "Trovato file mp3..."
 				if [ ! -f "$CARFOLDER/$i" ] ; then
+
 					echo "$filename non esiste in CARFOLDER lo copio..."
 					cp "$i" "$CARFOLDER/$i"
 				else
