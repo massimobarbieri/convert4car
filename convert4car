@@ -118,6 +118,8 @@ for i in **/*; do # Whitespace-safe and recursive
 					cp "$i" "$CARFOLDER/$i"
 
 #TODO: Aggiungere qui il comando per embeddare la cover nel file se presente il file cover.jpg
+#TODO: ffmpeg non funziona per un problema sui caratteri di escape
+#ffmpeg -i "$i" -c copy -map 0 -map 1 "$CARFOLDERi/$i"
 
 				else
 					echo "$filename è già presente in car folder :-)"
