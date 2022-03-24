@@ -100,16 +100,18 @@ for i in **/*; do # Whitespace-safe and recursive
 				# un file cover.jpg o front.jpg
 				# se è presente anziché fare una copia con cp la faccio con
 				# ffmpeg
-				DIROFMP3=$(dirname $i)
-				echo $DIROFMP3
+				DIROFMP3=$(dirname "$i")
+				echo "La copertina di $i è $DIROFMP3"
 
-			#	if [ ! -f "$DIROFMP3/cover.jpg" ]
-			#	then
-			#		COVER="$DIROFMP3/cover.jpg"
-			#	fi
-			#	if [ -f "DIROFMP3/front.jpg" ]
-			#		COVER="$DIROFMP3/front.jpg"
-	#	fi
+				if [ -f "$DIROFMP3/cover.jpg" ] ; then
+					COVER="$DIROFMP3/cover.jpg"
+					echo "Ho trovato il file $COVER"
+			
+				elif [ -f "DIROFMP3/front.jpg" ] ; then
+					COVER="$DIROFMP3/front.jpg"
+				fi
+
+				# Trovare come usare correttamente il file ffmpeg per aggiungere cover
 
 				echo "Trovato file mp3..."
 				if [ ! -f "$CARFOLDER/$i" ] ; then
