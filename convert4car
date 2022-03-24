@@ -115,9 +115,9 @@ for i in **/*; do # Whitespace-safe and recursive
 
 				echo "Trovato file mp3..."
 				if [ ! -f "$CARFOLDER/$i" ] ; then
-
-					echo "$filename non esiste in CARFOLDER lo copio..."
+					echo "$filename non esiste in CARFOLDER lo copio con cp..."
 					cp "$i" "$CARFOLDER/$i"
+
 				else
 					echo "$filename è già presente in car folder :-)"
 				fi
